@@ -6,7 +6,7 @@ provider "digitalocean" {
 
 resource "digitalocean_droplet" "mywebserver" {
   # Obtain your ssh_key id number via your account. See Document https://developers.digitalocean.com/documentation/v2/#list-all-keys
-  ssh_keys           = [4644534]         # Key example
+  ssh_keys           = "${ssh_do_id}"
   image              = "${var.ubuntu}"
   region             = "${var.do_lon1}"
   size               = "512mb"
@@ -22,7 +22,6 @@ resource "digitalocean_droplet" "mywebserver" {
       "git clone https://github.com/tinfoil/openvpn_autoconfig.git",
       "sudo chmod +x openvpn_autoconfig/bin/openvpn.sh",
       "sudo bash -xv openvpn_autoconfig/bin/openvpn.sh",
-      #"sudo cat /etc/openvpn/client.ovpn"
     ]
 
     connection {
@@ -33,8 +32,6 @@ resource "digitalocean_droplet" "mywebserver" {
     }
   }
   provisioner "local-exec" {
-    #command = "echo '${digitalocean_droplet.mywebserver.ipv4_address}'"
     command = "scp -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null root@'${digitalocean_droplet.mywebserver.ipv4_address}':/etc/openvpn/client.ovpn vpn.ovpn"
-    #command = "scp root@'${digitalocean_droplet.mywebserver.ipv4_address}':/etc/openvpn/client.ovpn vpn.ovpn"
   }
 }

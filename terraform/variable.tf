@@ -1,3 +1,10 @@
+###
+
+variable "ssh_do_id" {
+  description = "You need to know your sshkey id inside DO"
+  default     = "[4644534]"
+}
+
 # ####
 
 # Current Available Datacenter Regions

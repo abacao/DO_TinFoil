@@ -1,2 +1,4 @@
 #Files
 do_token
+terraform.tfstate*
+vpn.ovpn
