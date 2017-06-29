@@ -21,8 +21,8 @@ resource "digitalocean_droplet" "mywebserver" {
       "sudo apt-get -y install git",
       "git clone https://github.com/tinfoil/openvpn_autoconfig.git",
       "sudo chmod +x openvpn_autoconfig/bin/openvpn.sh",
-      "sudo bash openvpn_autoconfig/bin/openvpn.sh",
-      "sudo cat /etc/openvpn/client.ovpn"
+      "sudo bash -xv openvpn_autoconfig/bin/openvpn.sh",
+      #"sudo cat /etc/openvpn/client.ovpn"
     ]
 
     connection {
@@ -31,5 +31,10 @@ resource "digitalocean_droplet" "mywebserver" {
       user     = "root"
       timeout  = "2m"
     }
+  }
+  provisioner "local-exec" {
+    #command = "echo '${digitalocean_droplet.mywebserver.ipv4_address}'"
+    command = "scp -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null root@'${digitalocean_droplet.mywebserver.ipv4_address}':/etc/openvpn/client.ovpn vpn.ovpn"
+    #command = "scp root@'${digitalocean_droplet.mywebserver.ipv4_address}':/etc/openvpn/client.ovpn vpn.ovpn"
   }
 }
