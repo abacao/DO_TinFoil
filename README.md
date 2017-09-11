@@ -29,3 +29,5 @@ or
 7- It should create a vpn.ovpn file that you need to use with your prefered VPN software.
 
 8- When done, just `terraform-abacao.terraform destroy` and the counter ($$) will stop! :D
+
+ <span style="color:red">**NOTE:**</span> if you are using MacOS, just change the command `terraform-abacao.terraform` with plain `terraform`
