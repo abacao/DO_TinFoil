@@ -1,4 +1,14 @@
-#Files
+## [ temp files ]
+*.retry
+*.swp
+
+## [ folders ]
+.vagrant
+.terraform
+
+## [ files ]
+id_rsa
 do_token
-terraform.tfstate*
+terraform.tfstate
+terraform.tfstate.backup
 vpn.ovpn
