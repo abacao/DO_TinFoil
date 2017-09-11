@@ -22,8 +22,10 @@ or
   `curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer Your API TOKEN" "https://api.digitalocean.com/v2/account/keys" | python -m json.tool`
 
 6- From inside terraform folder, run
-  `terraform apply`
+  `terraform-abacao.terraform apply`
 
 5- Insert your DO ssh key id
 
 7- It should create a vpn.ovpn file that you need to use with your prefered VPN software.
+
+8- When done, just `terraform-abacao.terraform destroy` and the counter ($$) will stop! :D
